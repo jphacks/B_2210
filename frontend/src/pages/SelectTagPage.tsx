@@ -21,7 +21,7 @@ const SelectTagPage: FC = () => {
   };
 
   return (
-    <>
+    <div className="">
       <div id="category">
         <p>{categories[page]}</p>
       </div>
@@ -30,9 +30,21 @@ const SelectTagPage: FC = () => {
         selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
       />
-      <button onClick={() => onTransitPage(page, -1)}>前へ</button>
-      <button onClick={() => onTransitPage(page, 1)}>次へ</button>
-    </>
+      <div className="mx-auto flex items-center justify-between">
+        <button
+          className="mx-2 my-2 rounded bg-gray-200 px-4 py-2"
+          onClick={() => onTransitPage(page, -1)}
+        >
+          前へ
+        </button>
+        <button
+          className="my-2 mx-2 rounded bg-gray-200 px-4 py-2"
+          onClick={() => onTransitPage(page, 1)}
+        >
+          次へ
+        </button>
+      </div>
+    </div>
   );
 };
 

@@ -27,7 +27,14 @@ export const SelectTag: FC<Props> = ({
     <>
       <div id="tags">
         {tags.map((tag: string) => (
-          <button onClick={() => onSelectTag(tag)}>{tag}</button>
+          <button
+            className={`${
+              selectedTags.has(tag) ? "bg-orange-300" : "bg-orange-100"
+            } mx-2 rounded-full px-4 py-2`}
+            onClick={() => onSelectTag(tag)}
+          >
+            {tag}
+          </button>
         ))}
       </div>
     </>
