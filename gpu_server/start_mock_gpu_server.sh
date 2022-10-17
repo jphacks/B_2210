@@ -5,3 +5,4 @@ conda activate ldm
 python init_job_list.py 
 gnome-terminal -- bash -c "ngrok http 8000"
 gnome-terminal -- bash -c "python http_server.py"
+gnome-terminal -- bash -c "python mock_send_image.py"

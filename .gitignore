@@ -1,1 +1,3 @@
 gpu_server/stable-diffusion/models/ldm/stable-diffusion-v1/model.ckpt
+gpu_server/stable-diffusion/outputs/
+gpu_server/stable-diffusion/logs/
