@@ -1,7 +1,6 @@
 import { FC, useState } from "react";
 import { Tag, EditTag } from "./Tag";
-import { BsPencilSquare } from "react-icons/bs";
-import { Tags } from "../types/tag";
+import { FiEdit3 } from "react-icons/fi";
 
 type Props = {
   isSelected: boolean;
@@ -47,7 +46,7 @@ export const AdditionalTag: FC<Props> = ({
             className="-ml-2 py-2 pl-1 pr-2 align-middle"
             onClick={onClickEditButton}
           >
-            <BsPencilSquare size="1.5em" />
+            <FiEdit3 size="1.5em" />
           </button>
         )}
       </div>

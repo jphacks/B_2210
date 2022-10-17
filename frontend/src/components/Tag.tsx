@@ -35,7 +35,7 @@ export const EditTag: FC<EditTagProps> = ({ onFocusOut, value, onChange }) => {
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        className="my-2 mx-2 rounded-full border-2 border-orange-300 px-4 py-2"
+        className="my-2 mx-2 rounded-full border-2 border-orange-300 px-4 py-2 outline-none"
         onBlur={onFocusOut}
         onChange={onChange}
         value={value}
