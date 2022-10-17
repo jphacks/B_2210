@@ -1,9 +1,14 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { FiDownload } from "react-icons/fi";
 
 const WaitingPage: FC = () => {
   const [flag, setFlag] = useState<boolean>(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setFlag(true);
+    }, 2000);
+  }, []);
   return (
     <>
       {flag ? (
