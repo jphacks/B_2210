@@ -37,7 +37,7 @@ const OracleGeneration: FC = () => {
               {choice}
             </button>
           ) : (
-            <Link href="/waiting">
+            <Link href="/generation-result">
               <a className={buttonStyle}>{choice}</a>
             </Link>
           )
