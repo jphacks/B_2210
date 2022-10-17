@@ -1,0 +1,12 @@
+prompt,outdir,skip_grid,skip_save,ddim_steps,fixed_code,ddim_eta,n_iter,H,W,C,f,n_samples,n_rows,scale,device,from_file,seed,unet_bs,turbo,precision,format,sampler,ckpt
+Cyberpunk style image of a Tesla car reflection in rain,outputs/txt2img-samples,False,False,50,False,0.0,2,512,512,4,8,5,0,7.5,cuda,,27,1,False,autocast,png,plms,models/ldm/stable-diffusion-v1/model.ckpt
+Cyberpunk style image of a Tesla car reflection in rain,outputs/txt2img-samples,False,False,50,False,0.0,2,512,512,4,8,5,0,7.5,cuda,,27,1,False,autocast,png,plms,models/ldm/stable-diffusion-v1/model.ckpt
+Cyberpunk style image of a Tesla car reflection in rain,outputs/txt2img-samples,False,False,50,False,0.0,2,512,512,4,8,5,0,7.5,cuda,,27,1,False,autocast,png,plms,models/ldm/stable-diffusion-v1/model.ckpt
+Cyberpunk style image of a Tesla car reflection in rain,outputs/txt2img-samples,False,False,50,False,0.0,1,356,256,4,8,5,0,7.5,cuda,,713611,1,False,autocast,png,plms,models/ldm/stable-diffusion-v1/model.ckpt
+Cyberpunk style image of a Tesla car reflection in rain,outputs/txt2img-samples,False,False,50,False,0.0,1,256,256,4,8,5,0,7.5,cuda,,707786,1,False,autocast,png,plms,models/ldm/stable-diffusion-v1/model.ckpt
+Cyberpunk style image of a Tesla car reflection in rain,outputs/txt2img-samples,False,False,50,False,0.0,1,256,256,4,8,5,0,7.5,cuda,,603148,1,False,autocast,png,plms,models/ldm/stable-diffusion-v1/model.ckpt
+Cyberpunk style image of a Tesla car reflection in rain,outputs/txt2img-samples,False,False,50,False,0.0,2,512,512,4,8,5,0,7.5,cuda,,511534,1,False,autocast,png,plms,models/ldm/stable-diffusion-v1/model.ckpt
+Cyberpunk style image of a Tesla car reflection in rain,outputs/txt2img-samples,False,False,50,False,0.0,1,512,512,4,8,5,0,7.5,cuda,,815544,1,False,autocast,png,plms,models/ldm/stable-diffusion-v1/model.ckpt
+Cyberpunk style image of a car reflection in rain,outputs/txt2img-samples,False,False,50,False,0.0,1,512,512,4,8,5,0,7.5,cuda,,39676,1,False,autocast,png,plms,models/ldm/stable-diffusion-v1/model.ckpt
+Cyberpunk style image of a Nissan car reflection in rain,outputs/txt2img-samples,False,False,50,False,0.0,1,512,512,4,8,5,0,7.5,cuda,,406144,1,False,autocast,png,plms,models/ldm/stable-diffusion-v1/model.ckpt
+Cyberpunk style image of a Tesla car reflection in rain,outputs/txt2img-samples,False,False,50,False,0.0,1,512,512,4,8,5,0,7.5,cuda,,28002,1,False,autocast,png,plms,models/ldm/stable-diffusion-v1/model.ckpt
