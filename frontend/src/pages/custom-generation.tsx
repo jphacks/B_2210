@@ -84,7 +84,7 @@ const SelectTagPage: FC = () => {
             次へ
           </button>
         ) : (
-          <Link href="/waiting">
+          <Link href="/generation-result">
             <a className={buttonStyle}>生成</a>
           </Link>
         )}
