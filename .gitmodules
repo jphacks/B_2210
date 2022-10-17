@@ -1,0 +1,3 @@
+[submodule "aicon_maker_backend"]
+	path = aicon_maker_backend
+	url = https://github.com/iykuetboo/aicon_backend.git
