@@ -56,7 +56,8 @@ const SelectTagPage: FC = () => {
   };
 
   const buttonStyle: string =
-    "my-2 mx-2 rounded bg-gray-200 px-4 py-2  text-gray-900 disabled:bg-gray-100 disabled:text-gray-400";
+    "my-2 mx-2 rounded bg-gray-200 px-4 py-2 text-gray-900 disabled:bg-gray-100 disabled:text-gray-400";
+
   return (
     <div>
       <div id="category">
