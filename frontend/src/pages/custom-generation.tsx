@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import Link from "next/link";
 import { SelectTag } from "../components/SelectTag";
 import { Tags } from "../types/tag";
 
@@ -51,12 +52,13 @@ const SelectTagPage: FC = () => {
   };
 
   const onTransitPage = (dp: number) => {
-    const newPage = page + dp;
-    if (0 <= newPage && newPage < categories.length) setPage(newPage);
+    setPage(page + dp);
   };
 
+  const buttonStyle: string =
+    "my-2 mx-2 rounded bg-gray-200 px-4 py-2  text-gray-900 disabled:bg-gray-100 disabled:text-gray-400";
   return (
-    <div className="">
+    <div>
       <div id="category">
         <p>{categories[page]}</p>
       </div>
@@ -70,17 +72,21 @@ const SelectTagPage: FC = () => {
       />
       <div className="mx-auto flex items-center justify-between">
         <button
-          className="mx-2 my-2 rounded bg-gray-200 px-4 py-2"
+          className={buttonStyle}
           onClick={() => onTransitPage(-1)}
+          disabled={0 == page}
         >
           前へ
         </button>
-        <button
-          className="my-2 mx-2 rounded bg-gray-200 px-4 py-2"
-          onClick={() => onTransitPage(1)}
-        >
-          次へ
-        </button>
+        {page < categories.length - 1 ? (
+          <button className={buttonStyle} onClick={() => onTransitPage(1)}>
+            次へ
+          </button>
+        ) : (
+          <Link href="/waiting">
+            <a className={buttonStyle}>生成</a>
+          </Link>
+        )}
       </div>
     </div>
   );
