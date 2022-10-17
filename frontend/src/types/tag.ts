@@ -1,3 +1,3 @@
-export interface Tag {
+export interface Tags {
   [key: string]: string[];
 }
