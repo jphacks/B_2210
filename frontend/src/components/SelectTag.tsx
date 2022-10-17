@@ -1,16 +1,24 @@
 import { FC } from "react";
-import { Tag } from "../types/tag";
+import type { Tags } from "../types/tag";
+import { Tag } from "../components/Tag";
+import { AdditionalTag } from "../components/AdditionalTag";
 
 type Props = {
   tags: string[];
   selectedTags: Set<string>;
   setSelectedTags: (selectedTags: Set<string>) => void;
+  additionalTags: string[];
+  editTag: (index: number) => (tag: string) => void;
+  createNewTag: () => void;
 };
 
 export const SelectTag: FC<Props> = ({
   tags,
   selectedTags,
   setSelectedTags,
+  additionalTags,
+  editTag,
+  createNewTag,
 }) => {
   const onSelectTag = (tag: string) => {
     const newSelectedTags = new Set(selectedTags);
@@ -23,20 +31,35 @@ export const SelectTag: FC<Props> = ({
     console.log(newSelectedTags);
   };
 
+  const onAddTag = () => {
+    createNewTag();
+  };
+
   return (
     <>
-      <div id="tags">
+      <div>
         {tags.map((tag: string) => (
-          <button
-            className={`${
-              selectedTags.has(tag) ? "bg-orange-300" : "bg-orange-100"
-            } mx-2 rounded-full px-4 py-2`}
-            onClick={() => onSelectTag(tag)}
-          >
+          <Tag isSelected={selectedTags.has(tag)} onSelectTag={onSelectTag}>
             {tag}
-          </button>
+          </Tag>
         ))}
       </div>
+      {additionalTags.map((tag: string, index: number) => (
+        <AdditionalTag
+          isSelected={selectedTags.has(tag)}
+          onSelectTag={onSelectTag}
+          onTagNameInput={editTag(index)}
+          isLastEmpty={index == additionalTags.length - 1 && tag === ""}
+        >
+          {tag}
+        </AdditionalTag>
+      ))}
+      <button
+        className="my-2 mx-2 rounded-full bg-gray-100 px-4 py-2"
+        onClick={onAddTag}
+      >
+        +
+      </button>
     </>
   );
 };
