@@ -1,46 +1,88 @@
 import { FC, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { FiDownload } from "react-icons/fi";
+import { useRouter } from "next/router";
 
 const WaitingPage: FC = () => {
-  const [flag, setFlag] = useState<boolean>(false);
-  const [url, setURL] = useState<string>("");
-  // const [timer, setTimer] = useState<number>(0);
+  const [urls, setURLs] = useState<string[]>([]);
   const timer = useRef<NodeJS.Timer>();
+  const isWaitingResponse = useRef<boolean>(false);
+  const count = useRef<number>(0);
+  const router = useRouter();
+  const id = router.query.id;
+
+  const getImageURLs = async (url: string) => {
+    const response = await fetch(url, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id }),
+    });
+    console.log(response);
+    if (!response.ok) {
+      console.log("response status is not ok");
+      return;
+    }
+
+    const data = await response.json();
+    console.log(data);
+    if (!data.completed) {
+      console.log("icon generation is not completed");
+      count.current++;
+      return;
+    }
+    const imgURLs: string[] = data.result;
+
+    setURLs(await Promise.all(imgURLs.map(getImage)));
+    clearInterval(timer.current);
+  };
 
   const getImage = async (url: string) => {
-    const data = await fetch(url);
-    const blob = await data.blob();
+    const response = await fetch(url);
+    const blob = await response.blob();
     const objectURL = URL.createObjectURL(blob);
-    setURL(objectURL);
-    console.log(timer);
-    clearInterval(timer.current);
+    return objectURL;
   };
 
   useEffect(() => {
     console.log("useEffect");
     timer.current = setInterval(() => {
-      getImage("https://images.dog.ceo/breeds/bouvier/n02106382_1365.jpg");
-    }, 500);
+      if (!isWaitingResponse.current) {
+        isWaitingResponse.current = true;
+        getImageURLs(
+          "https://aicon-maker-backend.herokuapp.com/aiconapi/check_result"
+        ).then(() => {
+          isWaitingResponse.current = false;
+        });
+      }
+    }, 1000);
     return () => clearInterval(timer.current);
   }, []);
 
   return (
     <>
-      {url !== "" ? (
+      {urls.length > 0 ? (
         <>
           <p>生成結果</p>
-          <div>
-            <Image src={url} width={256} height={256} />
-          </div>
-          <a
-            download="result-aicon-maker.jpg"
-            href={url}
-            className="inline-block rounded border-2 border-blue-900 bg-blue-200 p-2"
-          >
-            ダウンロード
-            <FiDownload className="inline" />
-          </a>
+          {urls.map((url: string) => {
+            return (
+              <>
+                <div>
+                  <Image src={url} width={256} height={256} />
+                </div>
+                <a
+                  download="result-aicon-maker.jpg"
+                  href={url}
+                  className="mb-4 inline-block rounded border-2 border-blue-900 bg-blue-200 p-2"
+                >
+                  ダウンロード
+                  <FiDownload className="inline" />
+                </a>
+              </>
+            );
+          })}
         </>
       ) : (
         <>

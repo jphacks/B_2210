@@ -11,10 +11,13 @@ while True:
     data = urllib.parse.urlencode({"prompt":"Cyberpunk style image of a Tesla car reflection in rain",
                                    "id":str(counter)})
     data = data.encode('utf-8')
-    req = urllib.request.Request("http://localhost:8000", data,reqAddtionalHeaders)
+    try:
+        req = urllib.request.Request("http://localhost:8000", data,reqAddtionalHeaders)
 
-    with urllib.request.urlopen(req) as f:
-        print(f.read().decode('utf-8'))
+        with urllib.request.urlopen(req) as f:
+            print(f.read().decode('utf-8'))
+    except:
+        time.sleep(1)
 
     counter += 1
     time.sleep(5)

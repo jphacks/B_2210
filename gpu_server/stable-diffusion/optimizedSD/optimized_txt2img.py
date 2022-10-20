@@ -33,8 +33,8 @@ def load_model_from_config(ckpt, verbose=False):
     return sd
 
 
-config = "optimizedSD/v1-inference.yaml"
-DEFAULT_CKPT = "models/ldm/stable-diffusion-v1/model.ckpt"
+config = "stable-diffusion/optimizedSD/v1-inference.yaml"
+DEFAULT_CKPT = "stable-diffusion/models/ldm/stable-diffusion-v1/model.ckpt"
 
 parser = argparse.ArgumentParser()
 
@@ -103,7 +103,7 @@ parser.add_argument(
 parser.add_argument(
     "--n_samples",
     type=int,
-    default=5,
+    default=3,
     help="how many samples to produce for each given prompt. A.k.a. batch size",
 )
 parser.add_argument(
@@ -262,8 +262,10 @@ with torch.no_grad():
     all_samples = list()
     for n in trange(opt.n_iter, desc="Sampling"):
         for prompts in tqdm(data, desc="data"):
-
-            sample_path = os.path.join(outpath, "_".join(re.split(":| ", prompts[0])))[:150]
+            #print(outpath)
+            #sample_path = os.path.join(outpath, "_".join(re.split(":| ", prompts[0])))[:150]
+            sample_path = outpath
+            #print(sample_path)
             os.makedirs(sample_path, exist_ok=True)
             base_count = len(os.listdir(sample_path))
 
