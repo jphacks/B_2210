@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
-import Link from "next/link";
 import { SelectTag } from "../components/SelectTag";
 import { Tags } from "../types/tag";
 import { Title } from "../components/Title";
+import { PostTagButton } from "../components/PostTagButton";
 
 const SelectTagPage: FC = () => {
   const tags: Tags = {
@@ -83,9 +83,12 @@ const SelectTagPage: FC = () => {
             次へ
           </button>
         ) : (
-          <Link href="/generation-result">
-            <a className={buttonStyle}>生成</a>
-          </Link>
+          <PostTagButton
+            tags={Array.from(selectedTags)}
+            className={buttonStyle}
+          >
+            生成
+          </PostTagButton>
         )}
       </div>
     </div>

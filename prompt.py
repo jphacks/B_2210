@@ -54,13 +54,14 @@ for text in materials:
                     "text1": tag,
                     "text2": text
                     }
-        try:
-            res = requests.post('https://labs.goo.ne.jp/api/textpair', headers=headers, json=parameters)
-            response = json.loads(res.text)
-            score.append(response["score"])
-            break
-        except:
-            time.sleep(0.5)   
+        while True:
+            try:
+                res = requests.post('https://labs.goo.ne.jp/api/textpair', headers=headers, json=parameters)
+                response = json.loads(res.text)
+                score.append(response["score"])
+                break
+            except:
+                time.sleep(0.5)
 material = materials[score.index(max(score))]
 
 # select art_style
@@ -71,13 +72,14 @@ for text in art_styles:
                     "text1": tag,
                     "text2": text
                     }
-        try:
-            res = requests.post('https://labs.goo.ne.jp/api/textpair', headers=headers, json=parameters)
-            response = json.loads(res.text)
-            score.append(response["score"])
-            break
-        except:
-            time.sleep(0.5)
+        while True:
+            try:
+                res = requests.post('https://labs.goo.ne.jp/api/textpair', headers=headers, json=parameters)
+                response = json.loads(res.text)
+                score.append(response["score"])
+                break
+            except:
+                time.sleep(0.5)
 art_style = art_styles[score.index(max(score))]
 
 # select national_style
@@ -88,13 +90,14 @@ for text in national_styles:
                     "text1": tag,
                     "text2": text
                     }
-        try:
-            res = requests.post('https://labs.goo.ne.jp/api/textpair', headers=headers, json=parameters)
-            response = json.loads(res.text)
-            score.append(response["score"])
-            break
-        except:
-            time.sleep(0.5)
+        while True:
+            try:
+                res = requests.post('https://labs.goo.ne.jp/api/textpair', headers=headers, json=parameters)
+                response = json.loads(res.text)
+                score.append(response["score"])
+                break
+            except:
+                time.sleep(0.5)
 national_style = national_styles[score.index(max(score))]
 prompt = "a SNS icon of " + object.lower()+ " " + material + " " + art_style + " " + national_style + " " + " ".join(genarals) + " " + ts.google(" ".join(tags[1:])).lower()
 print("tags: ", tags)
