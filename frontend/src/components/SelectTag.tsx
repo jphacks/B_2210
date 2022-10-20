@@ -38,21 +38,25 @@ export const SelectTag: FC<Props> = ({
   return (
     <>
       <div>
-        {tags.map((tag: string) => (
-          <Tag isSelected={selectedTags.has(tag)} onSelectTag={onSelectTag}>
-            {tag}
-          </Tag>
+        {tags.map((tag: string, index) => (
+          <div key={index}>
+            <Tag isSelected={selectedTags.has(tag)} onSelectTag={onSelectTag}>
+              {tag}
+            </Tag>
+          </div>
         ))}
       </div>
       {additionalTags.map((tag: string, index: number) => (
-        <AdditionalTag
-          isSelected={selectedTags.has(tag)}
-          onSelectTag={onSelectTag}
-          onTagNameInput={editTag(index)}
-          isLastEmpty={index == additionalTags.length - 1 && tag === ""}
-        >
-          {tag}
-        </AdditionalTag>
+        <div key={index}>
+          <AdditionalTag
+            isSelected={selectedTags.has(tag)}
+            onSelectTag={onSelectTag}
+            onTagNameInput={editTag(index)}
+            isLastEmpty={index == additionalTags.length - 1 && tag === ""}
+          >
+            {tag}
+          </AdditionalTag>
+        </div>
       ))}
       <button
         className="my-2 mx-2 rounded-full bg-gray-100 px-4 py-2"
