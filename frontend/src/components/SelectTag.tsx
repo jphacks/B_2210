@@ -39,7 +39,7 @@ export const SelectTag: FC<Props> = ({
     <>
       <div>
         {tags.map((tag: string, index) => (
-          <div key={index}>
+          <div key={index} className="inline-block">
             <Tag isSelected={selectedTags.has(tag)} onSelectTag={onSelectTag}>
               {tag}
             </Tag>
@@ -47,7 +47,7 @@ export const SelectTag: FC<Props> = ({
         ))}
       </div>
       {additionalTags.map((tag: string, index: number) => (
-        <div key={index}>
+        <div key={index} className="inline-block">
           <AdditionalTag
             isSelected={selectedTags.has(tag)}
             onSelectTag={onSelectTag}
