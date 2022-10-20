@@ -1,14 +1,15 @@
 import { FC, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { FiDownload } from "react-icons/fi";
+import { useRouter } from "next/router";
 
 const WaitingPage: FC = () => {
   const [urls, setURLs] = useState<string[]>([]);
   const timer = useRef<NodeJS.Timer>();
   const isWaitingResponse = useRef<boolean>(false);
   const count = useRef<number>(0);
-  const id_wait = "test_10";
-  const id_finish = "finish";
+  const router = useRouter();
+  const id = router.query.id;
 
   const getImageURLs = async (url: string) => {
     const response = await fetch(url, {
@@ -17,7 +18,7 @@ const WaitingPage: FC = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: count.current < 10 ? id_wait : id_finish }),
+      body: JSON.stringify({ id: id }),
     });
     console.log(response);
     if (!response.ok) {
@@ -51,7 +52,7 @@ const WaitingPage: FC = () => {
       if (!isWaitingResponse.current) {
         isWaitingResponse.current = true;
         getImageURLs(
-          "https://aicon-maker-backend.herokuapp.com/aiconapi/check_result_nodb"
+          "https://aicon-maker-backend.herokuapp.com/aiconapi/check_result"
         ).then(() => {
           isWaitingResponse.current = false;
         });
