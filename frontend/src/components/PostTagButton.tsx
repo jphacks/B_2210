@@ -32,7 +32,10 @@ export const PostTagButton: FC<Props> = ({ tags, className, children }) => {
     const data = await response.json();
     console.log(data);
 
-    router.push({ pathname: "/generation-result", query: { id: data.id } });
+    await router.push({
+      pathname: "/generation-result",
+      query: { id: data.id },
+    });
   };
 
   return (
