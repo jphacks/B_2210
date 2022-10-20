@@ -1,5 +1,5 @@
-import { NextRouter, useRouter } from "next/router";
-import { FC } from "react";
+import { useRouter } from "next/router";
+import { FC, useState } from "react";
 
 type Props = {
   tags: string[];
@@ -10,6 +10,7 @@ type Props = {
 export const PostTagButton: FC<Props> = ({ tags, className, children }) => {
   const apiURL = "https://aicon-maker-backend.herokuapp.com/aiconapi/reserve";
   const router = useRouter();
+  const [isPosted, setIsPosted] = useState<boolean>(false);
 
   const postTags = async () => {
     const response = await fetch(apiURL, {
@@ -39,10 +40,13 @@ export const PostTagButton: FC<Props> = ({ tags, className, children }) => {
       <button
         className={className}
         onClick={() => {
-          postTags();
+          if (!isPosted) {
+            setIsPosted(true);
+            postTags().then(() => setIsPosted(false));
+          }
         }}
       >
-        {children}
+        {isPosted ? "..." : children}
       </button>
     </>
   );

@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import Link from "next/link";
 import { SelectTag } from "../components/SelectTag";
 import { Tags } from "../types/tag";
 import { Title } from "../components/Title";

@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import Link from "next/link";
 import type { Questions } from "../types/questions";
 import { Title } from "../components/Title";
 import { PostTagButton } from "../components/PostTagButton";
