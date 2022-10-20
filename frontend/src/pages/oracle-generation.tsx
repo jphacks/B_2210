@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import Link from "next/link";
 import type { Questions } from "../types/questions";
+import { Title } from "../components/Title";
 
 const OracleGeneration: FC = () => {
   // 質問をたくさん用意してランダムで数個答える想定
@@ -24,9 +25,7 @@ const OracleGeneration: FC = () => {
 
   return (
     <div className="">
-      <div id="category">
-        <p>{categories[page]}</p>
-      </div>
+      <Title>{categories[page]}</Title>
       <div className="mx-auto flex items-center justify-between">
         {questions[categories[page]].map((choice: string) =>
           page < categories.length - 1 ? (
