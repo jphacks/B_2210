@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import Link from "next/link";
 import { SelectTag } from "../components/SelectTag";
 import { Tags } from "../types/tag";
+import { Title } from "../components/Title";
 
 const SelectTagPage: FC = () => {
   const tags: Tags = {
@@ -60,9 +61,7 @@ const SelectTagPage: FC = () => {
 
   return (
     <div>
-      <div id="category">
-        <p>{categories[page]}</p>
-      </div>
+      <Title>{categories[page]}</Title>
       <SelectTag
         tags={tags[categories[page]]}
         selectedTags={selectedTags}
