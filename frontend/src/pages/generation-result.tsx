@@ -2,6 +2,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { FiDownload } from "react-icons/fi";
 import { useRouter } from "next/router";
+import { Title } from "../components/Title";
 
 const WaitingPage: FC = () => {
   const [urls, setURLs] = useState<string[]>([]);
@@ -66,10 +67,10 @@ const WaitingPage: FC = () => {
     <>
       {urls.length > 0 ? (
         <>
-          <p>生成結果</p>
-          {urls.map((url: string) => {
+          <Title>生成結果</Title>
+          {urls.map((url: string, index: number) => {
             return (
-              <>
+              <div key={index}>
                 <div>
                   <Image src={url} width={256} height={256} />
                 </div>
@@ -81,7 +82,7 @@ const WaitingPage: FC = () => {
                   ダウンロード
                   <FiDownload className="inline" />
                 </a>
-              </>
+              </div>
             );
           })}
         </>
