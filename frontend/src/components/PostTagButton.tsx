@@ -13,6 +13,12 @@ export const PostTagButton: FC<Props> = ({ tags, className, children }) => {
   const [isPosted, setIsPosted] = useState<boolean>(false);
 
   const postTags = async () => {
+    console.log(tags);
+    if (tags.length == 0) {
+      alert("一つ以上のタグを選択してください");
+      return;
+    }
+
     const response = await fetch(apiURL, {
       method: "POST",
       mode: "cors",
