@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Link from "next/link";
+import { SampleIcons } from "../components/SampleIcons";
 
 const Home: NextPage = () => {
   const goGeneration = (
@@ -27,6 +28,10 @@ const Home: NextPage = () => {
           <p>Oracle</p>
           <Link href="/oracle-generation">{goGeneration}</Link>
         </div>
+      </div>
+      <div className="my-10 content-center text-center">
+        <p>Samples</p>
+        <SampleIcons></SampleIcons>
       </div>
     </>
   );
