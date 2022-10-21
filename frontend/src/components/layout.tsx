@@ -10,7 +10,7 @@ export const Layout: FC<Props> = ({ children }) => {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="mx-auto w-full max-w-4xl flex-1">{children}</main>
+      <main className="mx-auto max-w-min-full-4xl flex-1">{children}</main>
       <Footer />
     </div>
   );

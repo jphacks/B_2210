@@ -7,7 +7,11 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      maxWidth: {
+        'min-full-4xl': 'min(100%, 56rem)',
+      }
+    },
   },
   plugins: [
     plugin(function ({ addUtilities }) {
