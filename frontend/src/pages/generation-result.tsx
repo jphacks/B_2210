@@ -9,18 +9,25 @@ const WaitingPage: FC = () => {
   const [queueLength, setQueueLength] = useState<number>();
 
   const timer = useRef<NodeJS.Timer>();
+  const id = useRef<string>();
   const isWaitingResponse = useRef<boolean>(false);
   const router = useRouter();
-  const id = router.query.id;
+  const query = router.query;
+
+  useEffect(() => {
+    id.current = query.id as string;
+  }, [query]);
 
   const getImageURLs = async (url: string) => {
+    console.log(id);
+
     const response = await fetch(url, {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: id }),
+      body: JSON.stringify({ id: id.current }),
     });
     console.log(response);
     if (!response.ok) {
@@ -77,9 +84,9 @@ const WaitingPage: FC = () => {
                 <a
                   download="result-aicon-maker.jpg"
                   href={url}
-                  className="mb-4 inline-block rounded border-2 border-blue-900 bg-blue-200 p-2"
+                  className="mb-4 inline-block rounded border-2 border-orange-400 bg-orange-200 p-2"
                 >
-                  ダウンロード
+                  ダウンロード　
                   <FiDownload className="inline" />
                 </a>
               </div>

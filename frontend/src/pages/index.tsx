@@ -6,7 +6,7 @@ import { Title } from "../components/Title";
 
 const Home: NextPage = () => {
   const goGeneration = (
-    <a className="my-4 block rounded bg-rose-200 px-4 py-2">生成ページへ</a>
+    <a className="my-4 block rounded bg-rose-200 px-4 py-2">はじめる</a>
   );
 
   const menuBlockStyle = "mx-10 inline-block items-center text-center";
