@@ -60,36 +60,38 @@ const SelectTagPage: FC = () => {
     "my-2 mx-2 rounded bg-gray-200 px-4 py-2 text-gray-900 disabled:bg-gray-100 disabled:text-gray-400";
 
   return (
-    <div>
-      <Title>{categories[page]}</Title>
-      <SelectTag
-        tags={tags[categories[page]]}
-        selectedTags={selectedTags}
-        setSelectedTags={setSelectedTags}
-        additionalTags={additionalTags[categories[page]]}
-        editTag={editTag}
-        createNewTag={createNewTag}
-      />
-      <div className="mx-auto flex items-center justify-between">
-        <button
-          className={buttonStyle}
-          onClick={() => onTransitPage(-1)}
-          disabled={0 == page}
-        >
-          前へ
-        </button>
-        {page < categories.length - 1 ? (
-          <button className={buttonStyle} onClick={() => onTransitPage(1)}>
-            次へ
-          </button>
-        ) : (
-          <PostTagButton
-            tags={Array.from(selectedTags)}
+    <div className="flex w-screen max-w-4xl justify-center">
+      <div className="sm:w-5/6">
+        <Title>{categories[page]}</Title>
+        <SelectTag
+          tags={tags[categories[page]]}
+          selectedTags={selectedTags}
+          setSelectedTags={setSelectedTags}
+          additionalTags={additionalTags[categories[page]]}
+          editTag={editTag}
+          createNewTag={createNewTag}
+        />
+        <div className="mx-auto flex items-center justify-between">
+          <button
             className={buttonStyle}
+            onClick={() => onTransitPage(-1)}
+            disabled={0 == page}
           >
-            生成
-          </PostTagButton>
-        )}
+            前へ
+          </button>
+          {page < categories.length - 1 ? (
+            <button className={buttonStyle} onClick={() => onTransitPage(1)}>
+              次へ
+            </button>
+          ) : (
+            <PostTagButton
+              tags={Array.from(selectedTags)}
+              className={buttonStyle}
+            >
+              生成
+            </PostTagButton>
+          )}
+        </div>
       </div>
     </div>
   );

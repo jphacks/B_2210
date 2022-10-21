@@ -2,6 +2,7 @@ import { FC } from "react";
 import type { Tags } from "../types/tag";
 import { Tag } from "../components/Tag";
 import { AdditionalTag } from "../components/AdditionalTag";
+import { TfiPlus } from "react-icons/tfi";
 
 type Props = {
   tags: string[];
@@ -37,7 +38,7 @@ export const SelectTag: FC<Props> = ({
 
   return (
     <>
-      <div>
+      <div className="flex flex-wrap justify-center">
         {tags.map((tag: string, index) => (
           <div key={index} className="inline-block">
             <Tag isSelected={selectedTags.has(tag)} onSelectTag={onSelectTag}>
@@ -45,25 +46,27 @@ export const SelectTag: FC<Props> = ({
             </Tag>
           </div>
         ))}
+        {additionalTags.map((tag: string, index: number) => (
+          <div key={index} className="inline-block">
+            <AdditionalTag
+              isSelected={selectedTags.has(tag)}
+              onSelectTag={onSelectTag}
+              onTagNameInput={editTag(index)}
+              isLastEmpty={index == additionalTags.length - 1 && tag === ""}
+            >
+              {tag}
+            </AdditionalTag>
+          </div>
+        ))}
       </div>
-      {additionalTags.map((tag: string, index: number) => (
-        <div key={index} className="inline-block">
-          <AdditionalTag
-            isSelected={selectedTags.has(tag)}
-            onSelectTag={onSelectTag}
-            onTagNameInput={editTag(index)}
-            isLastEmpty={index == additionalTags.length - 1 && tag === ""}
-          >
-            {tag}
-          </AdditionalTag>
-        </div>
-      ))}
-      <button
-        className="my-2 mx-2 rounded-full bg-gray-100 px-4 py-2"
-        onClick={onAddTag}
-      >
-        +
-      </button>
+      <div className="text-center">
+        <button
+          className="my-2 mx-2 rounded-full bg-rose-200 px-2 py-2"
+          onClick={onAddTag}
+        >
+          <TfiPlus size="1.5em" />
+        </button>
+      </div>
     </>
   );
 };

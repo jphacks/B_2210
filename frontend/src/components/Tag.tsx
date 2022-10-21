@@ -17,7 +17,7 @@ export const Tag: FC<Props> = ({ isSelected, onSelectTag, children }) => {
     <button
       className={`${
         isSelected ? "bg-orange-300" : "bg-orange-100"
-      } my-2 mx-2 rounded-full px-4 py-2`}
+      } my-1 mx-2 rounded-full px-4 py-2`}
       onClick={() => onSelectTag(children)}
     >
       {children}
@@ -35,7 +35,7 @@ export const EditTag: FC<EditTagProps> = ({ onFocusOut, value, onChange }) => {
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        className="my-2 mx-2 rounded-full border-2 border-orange-300 px-4 py-2 outline-none"
+        className="my-1 mx-2 rounded-full border-2 border-orange-300 px-4 py-2 outline-none"
         onBlur={onFocusOut}
         onChange={onChange}
         value={value}
