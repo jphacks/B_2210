@@ -15,9 +15,30 @@ from contextlib import contextmanager, nullcontext
 from ldm.util import instantiate_from_config
 from optimUtils import split_weighted_subprompts, logger
 from transformers import logging
+
+import pandas as pd
 # from samplers import CompVisDenoiser
 logging.set_verbosity_error()
 
+def get_job():
+    df = pd.read_csv("job_list.csv")
+    if len(df) == 0:
+        return -1, -1, ""
+    df = df.sort_values("timestamp")
+    item = df.iloc[0]
+    job_id = item["id"]
+    timestamp = item["timestamp"]
+    prompt = item["prompt"]
+    return job_id, timestamp, prompt
+
+def job_completed(job_id):
+    job_df = pd.read_csv("job_list.csv")
+    comp_df = pd.read_csv("comp_job_list.csv")
+    job_df = job_df[job_df["id"] != job_id]
+    new_item = pd.Series({"id":job_id})
+    comp_df = comp_df.append(new_item, ignore_index=True)
+    job_df.to_csv("job_list.csv", index=False)
+    comp_df.to_csv("comp_job_list.csv", index=False)
 
 def chunk(it, size):
     it = iter(it)
@@ -41,7 +62,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument(
     "--prompt", type=str, nargs="?", default="a painting of a virus monster playing guitar", help="the prompt to render"
 )
-parser.add_argument("--outdir", type=str, nargs="?", help="dir to write results to", default="outputs/txt2img-samples")
+parser.add_argument("--outdir", type=str, nargs="?", help="dir to write results to", default="stable-diffusion/outputs")
 parser.add_argument(
     "--skip_grid",
     action="store_true",
@@ -175,7 +196,6 @@ parser.add_argument(
 )
 opt = parser.parse_args()
 
-tic = time.time()
 os.makedirs(opt.outdir, exist_ok=True)
 outpath = opt.outdir
 grid_count = len(os.listdir(outpath)) - 1
@@ -235,20 +255,6 @@ if opt.fixed_code:
 
 batch_size = opt.n_samples
 n_rows = opt.n_rows if opt.n_rows > 0 else batch_size
-if not opt.from_file:
-    assert opt.prompt is not None
-    prompt = opt.prompt
-    print(f"Using prompt: {prompt}")
-    data = [batch_size * [prompt]]
-
-else:
-    print(f"reading prompts from {opt.from_file}")
-    with open(opt.from_file, "r") as f:
-        text = f.read()
-        print(f"Using prompt: {text.strip()}")
-        data = text.splitlines()
-        data = batch_size * list(data)
-        data = list(chunk(sorted(data), batch_size))
 
 
 if opt.precision == "autocast" and opt.device != "cpu":
@@ -259,12 +265,16 @@ else:
 seeds = ""
 with torch.no_grad():
 
-    all_samples = list()
-    for n in trange(opt.n_iter, desc="Sampling"):
+    while True:
+        job_id, timestamp, prompt = get_job()
+        if job_id == -1:
+            time.sleep(1)
+            continue
+        data = [batch_size * [prompt]]
         for prompts in tqdm(data, desc="data"):
             print(prompts)
             #sample_path = os.path.join(outpath, "_".join(re.split(":| ", prompts[0])))[:150]
-            sample_path = outpath
+            sample_path = outpath + "/" + job_id
             #print(sample_path)
             os.makedirs(sample_path, exist_ok=True)
             base_count = len(os.listdir(sample_path))
@@ -326,7 +336,7 @@ with torch.no_grad():
                     seeds += str(opt.seed) + ","
                     opt.seed += 1
                     base_count += 1
-
+                
                 if opt.device != "cpu":
                     mem = torch.cuda.memory_allocated() / 1e6
                     modelFS.to("cpu")
@@ -334,16 +344,5 @@ with torch.no_grad():
                         time.sleep(1)
                 del samples_ddim
                 print("memory_final = ", torch.cuda.memory_allocated() / 1e6)
+        job_completed(job_id)
 
-toc = time.time()
-
-time_taken = (toc - tic) / 60.0
-
-print(
-    (
-        "Samples finished in {0:.2f} minutes and exported to "
-        + sample_path
-        + "\n Seeds used = "
-        + seeds[:-1]
-    ).format(time_taken)
-)

@@ -15,7 +15,7 @@ app.logger.setLevel(logging.DEBUG)
 def test_method():         
     # print(request.json)      
     # get id
-    id = int(request.json['id']) 
+    job_id = request.json['id']
 
     # get num images
     numimages = int(request.json['num_images'])
