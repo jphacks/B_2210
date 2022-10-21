@@ -4,7 +4,7 @@ import Link from "next/link";
 export const Header: FC = () => {
   return (
     <header className="sticky top-0 z-10 border-b bg-white">
-      <div className="mx-auto flex h-12 max-w-4xl items-center justify-between">
+      <div className="mx-auto flex h-12 max-w-4xl items-center justify-between p-4">
         <Link href="/">
           <a>AIcon Maker</a>
         </Link>
