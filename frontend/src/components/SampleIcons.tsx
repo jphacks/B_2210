@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react"; //カルーセル用のタグをインポート
-import { Pagination, Navigation } from "swiper"; //使いたい機能をインポート
+import { Pagination, Navigation, Autoplay } from "swiper"; //使いたい機能をインポート
 import "swiper/css/bundle";
 
 // カルーセルにする画像のソースをリストにします
@@ -19,8 +19,8 @@ const images = [
 export const SampleIcons: FC = () => {
   return (
     <Swiper
-      modules={[Pagination, Navigation]}
-      spaceBetween={0}
+      modules={[Pagination, Navigation, Autoplay]}
+      spaceBetween={1}
       slidesPerView="auto"
       pagination={{
         clickable: true,
@@ -38,6 +38,10 @@ export const SampleIcons: FC = () => {
         768: {
           slidesPerView: 5,
         },
+      }}
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false,
       }}
     >
       {images.map((src: string, index: number) => {

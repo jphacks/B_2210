@@ -1,32 +1,42 @@
 import type { NextPage } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { SampleIcons } from "../components/SampleIcons";
+import { Title } from "../components/Title";
 
 const Home: NextPage = () => {
   const goGeneration = (
-    <a className="rounded bg-green-200 px-4 py-2">生成ページへ</a>
+    <a className="my-4 block rounded bg-rose-200 px-4 py-2">生成ページへ</a>
   );
+
+  const menuBlockStyle = "mx-10 inline-block items-center text-center";
 
   return (
     <>
-      <div>
-        <p className="my-4 text-center text-2xl">AIcon Maker</p>
+      <div className="my-8 items-center text-center">
+        <Image src="/logo.png" height={150} width={400} objectFit="contain" />
       </div>
       <div className="mx-8 mb-4 border-y border-gray-200 py-2 px-4">
-        <p>
-          AIcon
-          MakerはSNSやコミニュケーションツールが多様化する現代に必要なアイコン作成ツールです。
-        </p>
-        <p>AIがあなたに合ったあなただけのアイコンを生成します。</p>
-      </div>
-      <div className="text-center">
-        <div className="my-2 mx-10 inline-block items-center text-center">
-          <p>タグを選んで生成</p>
-          <Link href="/custom-generation">{goGeneration}</Link>
+        <div className="flex justify-center text-sm text-gray-800">
+          <div className="w-fit">
+            <p>
+              AIcon
+              MakerはSNSやコミニュケーションツールが多様化する現代に必要なアイコン作成ツールです。
+            </p>
+            <p>AIがあなたに合ったあなただけのアイコンを生成します。</p>
+          </div>
         </div>
-        <div className="my-2 mx-10 inline-block items-center text-center">
-          <p>Oracle</p>
+      </div>
+      <div className="flex flex-wrap justify-around text-center">
+        <div className={menuBlockStyle}>
+          {/* <p>心理テストで生成</p> */}
+          <Title>心理テストで生成</Title>
           <Link href="/oracle-generation">{goGeneration}</Link>
+        </div>
+        <div className={menuBlockStyle}>
+          {/* <p>タグを選んで生成</p> */}
+          <Title>タグを選んで生成</Title>
+          <Link href="/custom-generation">{goGeneration}</Link>
         </div>
       </div>
       <div className="my-10 content-center text-center">
