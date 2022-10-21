@@ -26,7 +26,7 @@ const OracleGeneration: FC = () => {
   return (
     <div className="">
       <Title>{categories[page]}</Title>
-      <div className="mx-auto flex items-center justify-between">
+      <div className="mx-auto flex flex-wrap items-center justify-center">
         {questions[categories[page]].map((choice: string) =>
           page < categories.length - 1 ? (
             <button
