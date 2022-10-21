@@ -34,7 +34,7 @@ class StubHttpRequestHandler(BaseHTTPRequestHandler):
         current_time = time.time()
         df = pd.read_csv("job_list.csv")
 
-        new_item = pd.Series({"id":int(job_id), "prompt":prompt, "timestamp":current_time})
+        new_item = pd.Series({"id":job_id, "prompt":prompt, "timestamp":current_time})
         df = df.append(new_item, ignore_index=True)
         df.to_csv("job_list.csv", index=False)
 
