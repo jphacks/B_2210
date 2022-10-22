@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       <Seo
         pageTitle="AIconMaker"
         pageDescription="AIがあなたに合ったあなただけのアイコンを生成します。"
-        pageImg="https://raw.githubusercontent.com/jphacks/B_2210/master/frontend/public/logo.png"
+        pageImg="https://github.com/jphacks/B_2210/raw/master/frontend/public/logo.png"
       />
       <div className="my-8 items-center text-center">
         <Image src="/logo.png" height={150} width={400} objectFit="contain" />
