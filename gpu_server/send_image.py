@@ -18,7 +18,7 @@ def get_comp_job():
     return job_id
 
 def send_image(job_id):
-    api = 'http://localhost:8080/return_image'
+    api = 'https://aicon-maker-backend.herokuapp.com/aiconapi/save_generated_images'
     output_path = "stable-diffusion/outputs/" + str(job_id)
     images = {}
     images["id"] = str(job_id)
