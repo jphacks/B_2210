@@ -87,6 +87,7 @@ const SelectTagPage: FC = () => {
             <PostTagButton
               tags={Array.from(selectedTags)}
               className={buttonStyle}
+              apiURL="https://aicon-maker-backend.herokuapp.com/aiconapi/reserve"
             >
               生成
             </PostTagButton>
