@@ -3,9 +3,19 @@ import Image from "next/image";
 import { FiDownload } from "react-icons/fi";
 import { useRouter } from "next/router";
 import { Title } from "../components/Title";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  LineShareButton,
+  LineIcon,
+} from "react-share";
 
 const WaitingPage: FC = () => {
-  const [urls, setURLs] = useState<string[]>([]);
+  const [urls, setURLs] = useState<{ objectURL: string; shareURL: string }[]>(
+    []
+  );
   const [queueLength, setQueueLength] = useState<number>();
 
   const timer = useRef<NodeJS.Timer>();
@@ -13,6 +23,9 @@ const WaitingPage: FC = () => {
   const isWaitingResponse = useRef<boolean>(false);
   const router = useRouter();
   const query = router.query;
+
+  const shareMessage: string = "AIconMakerで作ったよ";
+  const shareTag: string = "AIconMaker";
 
   useEffect(() => {
     id.current = query.id as string;
@@ -43,7 +56,6 @@ const WaitingPage: FC = () => {
       return;
     }
     const imgURLs: string[] = data.result;
-
     setURLs(await Promise.all(imgURLs.map(getImage)));
     clearInterval(timer.current);
   };
@@ -52,7 +64,7 @@ const WaitingPage: FC = () => {
     const response = await fetch(url);
     const blob = await response.blob();
     const objectURL = URL.createObjectURL(blob);
-    return objectURL;
+    return { objectURL, shareURL: url };
   };
 
   useEffect(() => {
@@ -75,20 +87,37 @@ const WaitingPage: FC = () => {
       {urls.length > 0 ? (
         <>
           <Title>生成結果</Title>
-          {urls.map((url: string, index: number) => {
+          {urls.map(({ objectURL, shareURL }, index: number) => {
             return (
               <div key={index}>
                 <div>
-                  <Image src={url} width={256} height={256} />
+                  <Image src={objectURL} width={256} height={256} />
                 </div>
                 <a
                   download="result-aicon-maker.jpg"
-                  href={url}
+                  href={objectURL}
                   className="mb-4 inline-block rounded border-2 border-orange-400 bg-orange-200 p-2"
                 >
                   ダウンロード　
                   <FiDownload className="inline" />
                 </a>
+                <FacebookShareButton
+                  url={shareURL}
+                  quote={shareMessage}
+                  hashtag={shareTag}
+                >
+                  <FacebookIcon size={32} round />
+                </FacebookShareButton>
+                <TwitterShareButton
+                  url={shareURL}
+                  title={shareMessage}
+                  hashtags={[shareTag]}
+                >
+                  <TwitterIcon size={32} round />
+                </TwitterShareButton>
+                <LineShareButton url={shareURL} title={shareMessage}>
+                  <LineIcon size={32} round />
+                </LineShareButton>
               </div>
             );
           })}
