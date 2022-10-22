@@ -6,7 +6,7 @@ import { Title } from "../components/Title";
 
 const Home: NextPage = () => {
   const goGeneration = (
-    <a className="my-4 block rounded bg-rose-200 px-4 py-2">はじめる</a>
+    <a className="block-inline my-4 rounded bg-rose-200 px-10 py-2">はじめる</a>
   );
 
   const menuBlockStyle = "mx-10 inline-block items-center text-center";
@@ -29,12 +29,10 @@ const Home: NextPage = () => {
       </div>
       <div className="flex flex-wrap justify-around text-center">
         <div className={menuBlockStyle}>
-          {/* <p>心理テストで生成</p> */}
           <Title>心理テストで生成</Title>
           <Link href="/oracle-generation">{goGeneration}</Link>
         </div>
         <div className={menuBlockStyle}>
-          {/* <p>タグを選んで生成</p> */}
           <Title>タグを選んで生成</Title>
           <Link href="/custom-generation">{goGeneration}</Link>
         </div>
