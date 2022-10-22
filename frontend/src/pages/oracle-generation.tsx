@@ -27,6 +27,7 @@ const OracleGeneration: FC = () => {
       "砂漠のピラミッド",
       "ヨーロッパの文化遺産",
       "懐かしの故郷",
+      "古城のほとり",
     ],
     "クラスの同窓会…あなたは？": [
       "みんなを集める幹事",
@@ -38,7 +39,7 @@ const OracleGeneration: FC = () => {
     "ひとつ魔法が使えるならどうしたい？": [
       "空を自由に飛びたいな",
       "動物と話せるようになる",
-      "自分の姿を自在に帰る",
+      "自分の姿を自在に変える",
       "モノをコピーして増やせる魔法",
       "頭が良くなる魔法",
       "好きな人を惚れさせる魔法",
@@ -82,7 +83,7 @@ const OracleGeneration: FC = () => {
               <PostTagButton
                 tags={[...choices, index]}
                 className={buttonStyle}
-                apiURL="https://aicon-maker-backend.herokuapp.com/aiconapi/reserve"
+                apiURL="https://aicon-maker-backend.herokuapp.com/aiconapi/reserve_from_question"
               >
                 {choice}
               </PostTagButton>
