@@ -98,7 +98,7 @@ const WaitingPage: FC = () => {
 
                 <div className="mb-6 flex justify-between">
                   <a
-                    download="result-aicon-maker.jpg"
+                    download="result-aicon-maker.png"
                     href={objectURL}
                     className="inline-block rounded border-2 border-orange-400 bg-orange-200 p-2"
                   >
