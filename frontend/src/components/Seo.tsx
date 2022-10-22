@@ -18,11 +18,8 @@ const Seo: FC<MetaData> = ({
   pageImgWidth,
   pageImgHeight,
 }) => {
-  const defaultTitle = "demo";
-  const defaultDescription = "demo";
-
-  const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle;
-  const description = pageDescription ? pageDescription : defaultDescription;
+  const title = pageTitle;
+  const description = pageDescription;
   const url = pagePath;
   const imgUrl = pageImg;
   const imgWidth = pageImgWidth ? pageImgWidth : 1280;
