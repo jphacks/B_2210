@@ -119,7 +119,7 @@ const WaitingPage: FC = () => {
                   >
                     <TwitterIcon size={32} round />
                   </TwitterShareButton>
-                  <LineShareButton url={shareURL + "\n" + shareMessage}>
+                  <LineShareButton url={shareURL + " " + shareMessage}>
                     <LineIcon size={32} round />
                   </LineShareButton>
                 </div>
