@@ -32,6 +32,21 @@ export const SelectTag: FC<Props> = ({
     console.log(newSelectedTags);
   };
 
+  const selectRandomTag = () => {
+    const newSelectedTags = new Set(selectedTags);
+    const allTags = [...tags, ...additionalTags];
+    console.log(newSelectedTags);
+    console.log(tags);
+    console.log(additionalTags);
+    tags.map((tag) => newSelectedTags.delete(tag));
+    additionalTags.map((tag) => newSelectedTags.delete(tag));
+
+    const index = Math.floor(Math.random() * allTags.length);
+    newSelectedTags.add(allTags[index]);
+    setSelectedTags(newSelectedTags);
+    console.log(newSelectedTags);
+  };
+
   const onAddTag = () => {
     createNewTag();
   };
@@ -59,12 +74,18 @@ export const SelectTag: FC<Props> = ({
           </div>
         ))}
       </div>
-      <div className="text-center">
+      <div className="flex flex-wrap justify-center">
         <button
-          className="my-2 mx-2 rounded-full bg-rose-200 px-2 py-2"
+          className="my-4 mx-6 rounded-full bg-rose-200 px-2 py-2"
           onClick={onAddTag}
         >
           <TfiPlus size="1.5em" />
+        </button>
+        <button
+          className="my-4 mx-6 rounded-full bg-rose-200 px-4 py-2"
+          onClick={selectRandomTag}
+        >
+          おまかせ
         </button>
       </div>
     </>
