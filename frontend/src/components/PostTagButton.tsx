@@ -2,13 +2,18 @@ import { useRouter } from "next/router";
 import { FC, useState } from "react";
 
 type Props = {
-  tags: string[];
-  className: string;
+  tags: string[] | number[];
+  className?: string;
   children: string;
+  apiURL: string;
 };
 
-export const PostTagButton: FC<Props> = ({ tags, className, children }) => {
-  const apiURL = "https://aicon-maker-backend.herokuapp.com/aiconapi/reserve";
+export const PostTagButton: FC<Props> = ({
+  tags,
+  className,
+  apiURL,
+  children,
+}) => {
   const router = useRouter();
   const [isPosted, setIsPosted] = useState<boolean>(false);
 
