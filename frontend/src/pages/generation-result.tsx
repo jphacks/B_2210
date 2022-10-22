@@ -102,8 +102,10 @@ const WaitingPage: FC = () => {
                     href={objectURL}
                     className="inline-block rounded border-2 border-orange-400 bg-orange-200 p-2"
                   >
-                    ダウンロード
-                    <FiDownload className="inline" />
+                    <div className="flex items-center">
+                      <span className="inline-block">ダウンロード</span>
+                      <FiDownload className="inline" />
+                    </div>
                   </a>
                   <FacebookShareButton
                     url={shareURL}
