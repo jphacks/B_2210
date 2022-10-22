@@ -6,7 +6,7 @@ import { PostTagButton } from "../components/PostTagButton";
 
 const SelectTagPage: FC = () => {
   const tags: Tags = {
-    "なんの絵？": [
+    モチーフを選んでね: [
       "ネコ",
       "トラ",
       "ライオン",
@@ -30,7 +30,7 @@ const SelectTagPage: FC = () => {
       "雲",
       "桜",
     ],
-    雰囲気: [
+    雰囲気を選んでね: [
       "かわいい",
       "かっこいい",
       "美しい",
