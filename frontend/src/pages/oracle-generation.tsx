@@ -55,10 +55,10 @@ const OracleGeneration: FC = () => {
   const categories = Object.keys(questions);
 
   const [page, setPage] = useState<number>(0);
-  const [choices, setChoices] = useState<number[]>([]);
+  const [choices, setChoices] = useState<string[]>([]);
 
-  const onTransitPage = (dp: number, index: number) => {
-    setChoices([...choices, index]);
+  const onTransitPage = (dp: number, choice: string) => {
+    setChoices([...choices, choice]);
     setPage(page + dp);
   };
 
@@ -73,14 +73,14 @@ const OracleGeneration: FC = () => {
             <button
               key={index}
               className={buttonStyle}
-              onClick={() => onTransitPage(1, index)}
+              onClick={() => onTransitPage(1, choice)}
             >
               {choice}
             </button>
           ) : (
             <div className="inline-block" key={index}>
               <PostTagButton
-                tags={[...choices, index]}
+                tags={[...choices, choice]}
                 className={buttonStyle}
                 apiURL="https://aicon-maker-backend.herokuapp.com/aiconapi/reserve"
               >
