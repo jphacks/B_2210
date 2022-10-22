@@ -1,12 +1,13 @@
 .swiper-button-next,
 .swiper-button-prev {
-    --swiper-navigation-color: rgb(203, 75, 116);
+    /* --swiper-navigation-color: rgb(203, 75, 116); */
+    --swiper-navigation-color: white;
 }
 .swiper-pagination>.swiper-pagination-bullet,
 .swiper-pagination > .swiper-pagination-bullet-active {
-    background-color: rgb(254 205 211);
+    background-color: white;
     height: 12px;
     width: 12px;
-    border-color: rgb(203, 75, 116);
+    border-color: rgb(200, 200, 200);
     border-width: 2px;
 }
