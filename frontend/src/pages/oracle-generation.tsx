@@ -16,9 +16,9 @@ const OracleGeneration: FC = () => {
     "苦手なのは？": ["5分前行動", "アドリブ", "ポーカーフェイス", "虫", "怪談"],
     "バスが30分来ない、どうする？": [
       "待つ",
-      "歩く",
-      "友達",
-      "タクシー",
+      "歩いて行く",
+      "友達を呼ぶ",
+      "タクシーで行く",
       "ヒッチハイク",
     ],
     "旅行するならどこに行きたい？": [
@@ -27,6 +27,7 @@ const OracleGeneration: FC = () => {
       "砂漠のピラミッド",
       "ヨーロッパの文化遺産",
       "懐かしの故郷",
+      "古城のほとり",
     ],
     "クラスの同窓会…あなたは？": [
       "みんなを集める幹事",
@@ -38,7 +39,7 @@ const OracleGeneration: FC = () => {
     "ひとつ魔法が使えるならどうしたい？": [
       "空を自由に飛びたいな",
       "動物と話せるようになる",
-      "自分の姿を自在に帰る",
+      "自分の姿を自在に変える",
       "モノをコピーして増やせる魔法",
       "頭が良くなる魔法",
       "好きな人を惚れさせる魔法",
@@ -55,10 +56,10 @@ const OracleGeneration: FC = () => {
   const categories = Object.keys(questions);
 
   const [page, setPage] = useState<number>(0);
-  const [choices, setChoices] = useState<string[]>([]);
+  const [choices, setChoices] = useState<number[]>([]);
 
-  const onTransitPage = (dp: number, choice: string) => {
-    setChoices([...choices, choice]);
+  const onTransitPage = (dp: number, index: number) => {
+    setChoices([...choices, index]);
     setPage(page + dp);
   };
 
@@ -73,16 +74,16 @@ const OracleGeneration: FC = () => {
             <button
               key={index}
               className={buttonStyle}
-              onClick={() => onTransitPage(1, choice)}
+              onClick={() => onTransitPage(1, index)}
             >
               {choice}
             </button>
           ) : (
             <div className="inline-block" key={index}>
               <PostTagButton
-                tags={[...choices, choice]}
+                tags={[...choices, index]}
                 className={buttonStyle}
-                apiURL="https://aicon-maker-backend.herokuapp.com/aiconapi/reserve"
+                apiURL="https://aicon-maker-backend.herokuapp.com/aiconapi/reserve_from_question"
               >
                 {choice}
               </PostTagButton>
