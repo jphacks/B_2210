@@ -24,7 +24,8 @@ const WaitingPage: FC = () => {
   const router = useRouter();
   const query = router.query;
 
-  const shareMessage: string = "AIconMakerで作ったよ";
+  const shareMessage: string =
+    "AIconMakerで作ったよ https://aicon-maker.vercel.app/";
   const shareTag: string = "AIconMaker";
 
   useEffect(() => {
