@@ -27,18 +27,24 @@ const OracleGeneration: FC = () => {
     <div className="">
       <Title>{categories[page]}</Title>
       <div className="mx-auto flex flex-wrap items-center justify-center">
-        {questions[categories[page]].map((choice: string) =>
+        {questions[categories[page]].map((choice: string, index: number) =>
           page < categories.length - 1 ? (
             <button
+              key={index}
               className={buttonStyle}
               onClick={() => onTransitPage(1, choice)}
             >
               {choice}
             </button>
           ) : (
-            <PostTagButton tags={choices} className={buttonStyle}>
-              {choice}
-            </PostTagButton>
+            <div className="inline-block" key={index}>
+              <PostTagButton
+                tags={[...choices, choice]}
+                className={buttonStyle}
+              >
+                {choice}
+              </PostTagButton>
+            </div>
           )
         )}
       </div>
