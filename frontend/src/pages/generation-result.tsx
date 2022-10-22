@@ -94,31 +94,33 @@ const WaitingPage: FC = () => {
                 <div>
                   <Image src={objectURL} width={256} height={256} />
                 </div>
-                <a
-                  download="result-aicon-maker.jpg"
-                  href={objectURL}
-                  className="mb-4 inline-block rounded border-2 border-orange-400 bg-orange-200 p-2"
-                >
-                  ダウンロード　
-                  <FiDownload className="inline" />
-                </a>
-                <FacebookShareButton
-                  url={shareURL}
-                  quote={shareMessage}
-                  hashtag={shareTag}
-                >
-                  <FacebookIcon size={32} round />
-                </FacebookShareButton>
-                <TwitterShareButton
-                  url={shareURL}
-                  title={shareMessage}
-                  hashtags={[shareTag]}
-                >
-                  <TwitterIcon size={32} round />
-                </TwitterShareButton>
-                <LineShareButton url={shareURL} title={shareMessage}>
-                  <LineIcon size={32} round />
-                </LineShareButton>
+                <div className="mb-6 flex justify-between">
+                  <a
+                    download="result-aicon-maker.jpg"
+                    href={objectURL}
+                    className="inline-block rounded border-2 border-orange-400 bg-orange-200 p-2"
+                  >
+                    ダウンロード
+                    <FiDownload className="inline" />
+                  </a>
+                  <FacebookShareButton
+                    url={shareURL}
+                    quote={shareMessage}
+                    hashtag={shareTag}
+                  >
+                    <FacebookIcon size={32} round />
+                  </FacebookShareButton>
+                  <TwitterShareButton
+                    url={shareURL}
+                    title={shareMessage}
+                    hashtags={[shareTag]}
+                  >
+                    <TwitterIcon size={32} round />
+                  </TwitterShareButton>
+                  <LineShareButton url={shareURL} title={shareMessage}>
+                    <LineIcon size={32} round />
+                  </LineShareButton>
+                </div>
               </div>
             );
           })}
