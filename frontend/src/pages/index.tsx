@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SampleIcons } from "../components/SampleIcons";
 import { Title } from "../components/Title";
+import Seo from "../components/Seo";
 
 const Home: NextPage = () => {
   const goGeneration = (
@@ -13,6 +14,11 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <Seo
+        pageTitle="AIconMaker"
+        pageDescription="AIがあなたに合ったあなただけのアイコンを生成します。"
+        pageImg="/logo.png"
+      />
       <div className="my-8 items-center text-center">
         <Image src="/logo.png" height={150} width={400} objectFit="contain" />
       </div>
