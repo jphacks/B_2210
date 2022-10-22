@@ -11,6 +11,7 @@ import {
   LineShareButton,
   LineIcon,
 } from "react-share";
+import Link from "next/link";
 
 const WaitingPage: FC = () => {
   const [urls, setURLs] = useState<{ objectURL: string; shareURL: string }[]>(
@@ -116,12 +117,19 @@ const WaitingPage: FC = () => {
                 >
                   <TwitterIcon size={32} round />
                 </TwitterShareButton>
-                <LineShareButton url={shareURL} title={shareMessage}>
+                <LineShareButton url={shareURL + "\n" + shareMessage}>
                   <LineIcon size={32} round />
                 </LineShareButton>
               </div>
             );
           })}
+          <div className="flex justify-center">
+            <Link href="/">
+              <a className="block-inline my-4 rounded bg-rose-200 px-10 py-2">
+                トップに戻る
+              </a>
+            </Link>
+          </div>
         </>
       ) : (
         <>
