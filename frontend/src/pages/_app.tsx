@@ -3,12 +3,16 @@ import type { AppProps } from "next/app";
 import "../../styles/swiper.css";
 
 import { Layout } from "../components/layout";
+import { GoogleAnalytics } from "../components/GoogleAnalytics";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <GoogleAnalytics />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   );
 }
 
