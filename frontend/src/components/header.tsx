@@ -5,7 +5,6 @@ import Image from "next/image";
 export const Header: FC = () => {
   return (
     <header className="sticky top-0 z-10 border-b bg-white">
-      <!-- Google tag (gtag.js) -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SWJSM71C2"></script>
       <script>
         window.dataLayer = window.dataLayer || [];
