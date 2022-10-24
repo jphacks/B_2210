@@ -1,18 +1,22 @@
 import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 
 export const Header: FC = () => {
   return (
     <header className="sticky top-0 z-10 border-b bg-white">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SWJSM71C2"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-8SWJSM71C2"
+      ></Script>
+      <Script>
+        {` window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-8SWJSM71C2');
-      </script>
+        gtag('config', 'G-8SWJSM71C2');`}
+      </Script>
       <div className="mx-auto flex h-12 max-w-4xl items-center justify-between p-4">
         <Link href="/">
           <a>
