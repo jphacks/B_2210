@@ -10,7 +10,7 @@ export const Header: FC = () => {
         strategy="lazyOnload"
         src="https://www.googletagmanager.com/gtag/js?id=G-8SWJSM71C2"
       ></Script>
-      <Script strategy="lazyOnload">
+      <Script strategy="lazyOnload" id="google-analytics">
         {` window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
