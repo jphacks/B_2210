@@ -7,10 +7,10 @@ export const Header: FC = () => {
   return (
     <header className="sticky top-0 z-10 border-b bg-white">
       <Script
-        async
+        strategy="lazyOnload"
         src="https://www.googletagmanager.com/gtag/js?id=G-8SWJSM71C2"
       ></Script>
-      <Script>
+      <Script strategy="lazyOnload">
         {` window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
