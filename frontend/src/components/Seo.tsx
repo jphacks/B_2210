@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Head from "next/head";
+import Script from "next/script";
 
 interface MetaData {
   pageTitle?: string;
@@ -38,6 +39,14 @@ const Seo: FC<MetaData> = ({
       <meta property="og:image" content={imgUrl} />
       <meta property="og:image:width" content={String(imgWidth)} />
       <meta property="og:image:height" content={String(imgHeight)} />
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-8SWJSM71C2"></Script>
+      <Script id="google-analytics">
+        {` window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-8SWJSM71C2');`}
+      </Script>
     </Head>
   );
 };
